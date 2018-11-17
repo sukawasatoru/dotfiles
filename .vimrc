@@ -19,6 +19,8 @@ set modeline
 set modelines=5
 set virtualedit=block
 set splitright
+set history=5000
+set laststatus=2
 
 " detail in :help cinoptions-values
 set shiftwidth=4
