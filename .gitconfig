@@ -16,6 +16,8 @@
 	co = checkout
 [push]
 	default = simple
+[log]
+	follow = true
 [commit]
 	gpgsign = true
 [pager]
@@ -29,3 +31,4 @@
 	process = git-lfs filter-process
 [gpg]
 	program = /opt/local/bin/gpg
+# vim: noexpandtab

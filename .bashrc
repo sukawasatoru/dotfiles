@@ -68,6 +68,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
             return
         fi
         if [[ $dur -gt 60 ]]; then
+            # TODO: ubuntu.
             terminal-notifier -message "Finished: $_tn_cmd"
             echo elapsed time: $dur seconds
         fi
