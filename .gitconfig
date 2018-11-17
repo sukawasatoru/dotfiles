@@ -1,0 +1,31 @@
+[include]
+	path = .gitconfig.local
+[color]
+	ui = true
+[merge]
+	tool = p4merge
+[core]
+	editor = vim
+	compression = 9
+	autocrlf = false
+[diff]
+	compactionheuristic = true
+[alias]
+	logg = log --graph --pretty=fuller --show-signature
+	showw = show --pretty=fuller --show-signature
+	co = checkout
+[push]
+	default = simple
+[commit]
+	gpgsign = true
+[pager]
+	diff = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
+	show = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
+	log = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	required = true
+	process = git-lfs filter-process
+[gpg]
+	program = /opt/local/bin/gpg

@@ -1,0 +1,14 @@
+$if Bash
+    set bell-style visible
+    set colored-stats On
+    set completion-ignore-case On
+    set visible-stats On
+
+    "\C-p": history-search-backward
+    "\C-n": history-search-forward
+    # behavior like peco.
+    # "\C-p": history-substring-search-backward
+    # "\C-n": history-substring-search-forward
+
+    "\C-w": backward-kill-word
+$endif

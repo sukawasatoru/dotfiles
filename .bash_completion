@@ -1,0 +1,6 @@
+if [ -d ~/.bash_completion.d ]; then
+    for COMPLETION in ~/.bash_completion.d/*; do
+        echo "$HOME/.bash_completion: load $COMPLETION"
+        source $COMPLETION
+    done
+fi
