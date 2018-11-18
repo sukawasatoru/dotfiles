@@ -42,5 +42,9 @@ if [ -x ~/src/rust-myscript/target/release ]; then
 fi
 
 if [ -n "`which mypathhelper`" ]; then
-    export PATH=`mypathhelper`
+    PATH=`mypathhelper`
+fi
+
+if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
+    PATH=`python -m site --user-base`/bin:$PATH
 fi
