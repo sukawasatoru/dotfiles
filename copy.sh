@@ -3,7 +3,7 @@
 cp -f ~/.android/androidtool.cfg $(dirname $0)/.android
 cp -f ~/.bash_aliases $(dirname $0)
 cp -f ~/.bash_completion $(dirname $0)
-cp -rf ~/bash_completion.d $(dirname $0)
+cp -rf ~/.bash_completion.d $(dirname $0)
 cp -f ~/.bash_profile $(dirname $0)
 cp -f ~/.bashrc $(dirname $0)
 cp -f ~/.gitconfig $(dirname $0)
