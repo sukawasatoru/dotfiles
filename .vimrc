@@ -70,5 +70,4 @@ syntax enable
 "End dein Scripts-------------------------
 
 cmap w!! w !sudo tee > /dev/null %
-"call deoplete#enable()
 let g:deoplete#enable_at_startup = 1

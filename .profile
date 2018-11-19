@@ -6,32 +6,44 @@ if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper`
 fi
 # MacPorts Installer addition on 2012-12-01_at_14:53:21: adding an appropriate PATH variable for use with MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # Finished adapting your PATH environment variable for use with MacPorts.
 
 # adding an appropriate PATH variable for use with Android.
 # ~/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
 # ~/Library/LaunchAgents/setenv.ANDROID_HOME.plist
-export ANDROID_SDK_ROOT=/opt/android-sdk-macosx
-export ANDROID_HOME=$ANDROID_SDK_ROOT
+if [ -x /opt/android-sdk-macosx ]; then
+    ANDROID_SDK_ROOT=/opt/android-sdk-macosx
+    export ANDROID_SDK_ROOT
+    ANDROID_HOME=$ANDROID_SDK_ROOT
+    export ANDROID_HOME
+    PATH=/opt/android-sdk-macosx/tools/bin:$PATH
+    PATH=/opt/android-sdk-macosx/platform-tools:$PATH
+fi
 
-export PATH=/opt/android-sdk-macosx/tools/bin:$PATH
-export PATH=/opt/android-sdk-macosx/platform-tools:$PATH
-
-export PATH=$HOME/bin:$PATH
+if [ -x $HOME/bin ]; then
+    PATH=$HOME/bin:$PATH
+fi
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
 # export JAVA_HOME=`/usr/libexec/java_home`
 
-export LANG=en_US.UTF-8
-export CLICOLOR=1
-export EDITOR=vim
+LANG=en_US.UTF-8
+export LANG
+CLICOLOR=1
+export CLICOLOR
+EDITOR=vim
+export EDITOR
 # export VISUAL=$EDITOR
-export TZ=JST-9
+TZ=JST-9
+export TZ
 
-export PATH="$HOME/.cargo/bin:$PATH"
+if [ -x $HOME/.cargo/bin ]; then
+    PATH="$HOME/.cargo/bin:$PATH"
+fi
 
-export PATH=$PATH:$HOME/.ndenv/bin
-eval "`ndenv init -`"
+if [ -x $HOME/.ndenv/bin ]; then
+    PATH=$PATH:$HOME/.ndenv/bin
+fi
 
 if [ -x ~/Applications/terminal-notifier.app ]; then
     PATH=$HOME/Applications/terminal-notifier.app/Contents/MacOS:$PATH

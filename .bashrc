@@ -1,11 +1,44 @@
-# for scp
-#[[ -z "$PS1" ]] && return
-case $- in
-    *i*) ;;
-    *) return;;
-esac
+[[ -z "$PS1" ]] && return
 
 echo ~/.bashrc
+
+
+[[ -f /proc/version ]] && [[ "$(grep Microsoft /proc/version)" ]] && WSL=1
+
+if [ $(uname -s) = "Linux" ]; then
+    [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+    if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+        debian_chroot=$(cat /etc/debian_chroot)
+    fi
+
+    case "$TERM" in
+        xterm-color|*-256color) color_prompt=yes;;
+    esac
+
+    if [ -n "$force_color_prompt" ]; then
+        if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+            # We have color support; assume it's compliant with Ecma-48
+            # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+            # a case would tend to support setf rather than setaf.)
+            color_prompt=yes
+        else
+            color_prompt=
+        fi
+    fi
+
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
+        fi
+    fi
+fi
+
+[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
+
+[[ -x $HOME/src/rust-myscript/target/release ]] && export PATH=$HOME/src/rust-myscript/target/release:$PATH
 
 shopt -s checkjobs
 shopt -s histappend
@@ -21,13 +54,21 @@ IGNOREEOF=10
 # for "C-w" on .inputrc
 stty werase undef
 
+[[ "$WSL" ]] && umask 022
+
 [[ -f ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
 [[ -f ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
 [[ -f /opt/local/etc/bash_completion ]] && echo "$HOME/.bashrc: load /opt/local/etc/bash_completion" && source /opt/local/etc/bash_completion
 
 PROMPT_COMMAND="PS1='\$(RET=\$?; [ \$RET -eq 0 ] && echo -n \"\[\e[0;32m\]\" || echo -n \"\[\e[0;31m\]\"; printf %3s \$RET)\$\[\e[m\] '; history -a; history -c; history -r"
 
-[[ -s /opt/local/etc/profile.d/autojump.sh ]] && echo "$HOME/.bashrc: load /opt/local/etc/profile.d/autojump.sh" && source /opt/local/etc/profile.d/autojump.sh
+if [ -s /usr/share/autojump/autojump.sh ]; then
+    echo "$HOME/.bashrc: load /usr/share/autojump/autojump.sh"
+    source /usr/share/autojump/autojump.sh
+elif [ -s /opt/local/etc/profile.d/autojump.sh ]; then
+    echo "$HOME/.bashrc: load /opt/local/etc/profile.d/autojump.sh"
+    source /opt/local/etc/profile.d/autojump.sh
+fi
 
 # https://gist.github.com/umeyuki/0267d8e995e32012cfe8
 peco_history() {
@@ -35,7 +76,8 @@ peco_history() {
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
-bind -x '"\C-r": peco_history'
+# TODO: for windows 10 v1709
+[[ -z "$WSL" ]] && bind -x '"\C-r": peco_history'
 
 # http://blog.glidenote.com/blog/2014/06/26/snippets-peco-percol/
 function peco-snippets() {
@@ -50,7 +92,8 @@ function peco-snippets() {
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
-bind -x '"\C-x\C-x":peco-snippets'
+# TODO: for windows 10 v1709
+[[ -z "$WSL" ]] && bind -x '"\C-x\C-x":peco-snippets'
 
 # http://bearmini.hatenablog.com/entry/2016/02/16/222057
 if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
@@ -68,10 +111,20 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
             return
         fi
         if [[ $dur -gt 60 ]]; then
-            # TODO: ubuntu.
-            terminal-notifier -message "Finished: $_tn_cmd"
+            case $(uname -s) in
+                "Darwin")
+                    terminal-notifier -message "Finished: $_tn_cmd"
+                    ;;
+                "Linux")
+                    [[ "$(alias -p | grep alias\ alert=)" ]] && alert "Finished: $_tn_cmd"
+                    ;;
+                *)
+                    ;;
+            esac
             echo elapsed time: $dur seconds
         fi
         _tn_cmd=''
     }
 fi
+
+unset WSL

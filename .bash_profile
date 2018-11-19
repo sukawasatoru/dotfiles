@@ -1,16 +1,13 @@
-case $- in
-    *i*) bash_interactive=1;;
-      *) ;;
-esac
+[[ "$PS1" ]] && bash_interactive=1
 
-[[ "$bash_interactive" ]] && echo ~/.bash_profile
+[[ "$bash_interactive" ]] && echo $HOME/.bash_profile
 
-if [ -f ~/.profile ]; then
+if [ -f $HOME/.profile ]; then
     [[ "$bash_interactive" ]] && echo "$HOME/.bash_profile: load $HOME/.profile"
     source $HOME/.profile
 fi
 
-if [ "$bash_interactive" -a -f ~/.bashrc ]; then
+if [ "$bash_interactive" -a -f $HOME/.bashrc ]; then
     echo "$HOME/.bash_profile: load $HOME/.bashrc"
     source $HOME/.bashrc
 fi
