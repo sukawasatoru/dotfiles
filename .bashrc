@@ -1,6 +1,6 @@
 [[ -z "$PS1" ]] && return
 
-echo ~/.bashrc
+echo $HOME/.bashrc
 
 
 [[ -f /proc/version ]] && [[ "$(grep Microsoft /proc/version)" ]] && WSL=1
@@ -27,18 +27,16 @@ if [ $(uname -s) = "Linux" ]; then
         fi
     fi
 
-    if ! shopt -oq posix; then
-        if [ -f /usr/share/bash-completion/bash_completion ]; then
-            . /usr/share/bash-completion/bash_completion
-        elif [ -f /etc/bash_completion ]; then
-            . /etc/bash_completion
+    if [ "$(lsb_release -c | cut -f2)" != "xenial" ]; then
+        if ! shopt -oq posix; then
+            if [ -f /usr/share/bash-completion/bash_completion ]; then
+                . /usr/share/bash-completion/bash_completion
+            elif [ -f /etc/bash_completion ]; then
+                . /etc/bash_completion
+            fi
         fi
     fi
 fi
-
-[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases
-
-[[ -x $HOME/src/rust-myscript/target/release ]] && export PATH=$HOME/src/rust-myscript/target/release:$PATH
 
 shopt -s checkjobs
 shopt -s histappend
@@ -53,8 +51,6 @@ IGNOREEOF=10
 
 # for "C-w" on .inputrc
 stty werase undef
-
-[[ "$WSL" ]] && umask 022
 
 [[ -f ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
 [[ -f ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases

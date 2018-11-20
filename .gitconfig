@@ -1,9 +1,7 @@
 [include]
-	path = .gitconfig.local
+	path = ~/.gitconfig.local
 [color]
-	ui = true
-[merge]
-	tool = p4merge
+	ui = auto
 [core]
 	editor = vim
 	compression = 9
@@ -29,6 +27,4 @@
 	smudge = git-lfs smudge -- %f
 	required = true
 	process = git-lfs filter-process
-[gpg]
-	program = /opt/local/bin/gpg
 # vim: noexpandtab

@@ -1,13 +1,22 @@
-if [ -n "$PS1" ]; then
-    echo ~/.profile
+if [ "$PS1" ]; then
+    echo $HOME/.profile
+fi
+
+if [ -f /proc/version ] && [ "`grep Microsoft /proc/version`" ]; then
+    umask 0022
 fi
 
 if [ -x /usr/libexec/path_helper ]; then
     eval `/usr/libexec/path_helper`
 fi
-# MacPorts Installer addition on 2012-12-01_at_14:53:21: adding an appropriate PATH variable for use with MacPorts.
-PATH=/opt/local/bin:/opt/local/sbin:$PATH
-# Finished adapting your PATH environment variable for use with MacPorts.
+
+if [ -x /opt/local/sbin ]; then
+    PATH=/opt/local/sbin:$PATH
+fi
+
+if [ -x /opt/local/bin ]; then
+    PATH=/opt/local/bin:$PATH
+fi
 
 # adding an appropriate PATH variable for use with Android.
 # ~/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
@@ -24,18 +33,12 @@ fi
 if [ -x $HOME/bin ]; then
     PATH=$HOME/bin:$PATH
 fi
+
+if [ -x $HOME/.local/bin ]; then
+    PATH=$HOME/.local/bin:$PATH
+fi
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
 # export JAVA_HOME=`/usr/libexec/java_home`
-
-LANG=en_US.UTF-8
-export LANG
-CLICOLOR=1
-export CLICOLOR
-EDITOR=vim
-export EDITOR
-# export VISUAL=$EDITOR
-TZ=JST-9
-export TZ
 
 if [ -x $HOME/.cargo/bin ]; then
     PATH="$HOME/.cargo/bin:$PATH"
@@ -60,3 +63,12 @@ fi
 if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
     PATH=`python -m site --user-base`/bin:$PATH
 fi
+
+LANG=en_US.UTF-8
+CLICOLOR=1
+export CLICOLOR
+EDITOR=vim
+export EDITOR
+# export VISUAL=$EDITOR
+TZ=JST-9
+export TZ

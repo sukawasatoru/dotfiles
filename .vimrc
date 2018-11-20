@@ -34,6 +34,10 @@ if has('persistent_undo')
     set undofile
 endif
 
+if &diff
+    colorscheme pablo
+endif
+
 "dein Scripts-----------------------------
 if &compatible
   set nocompatible               " Be iMproved

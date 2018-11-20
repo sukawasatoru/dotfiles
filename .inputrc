@@ -6,9 +6,5 @@ $if Bash
 
     "\C-p": history-search-backward
     "\C-n": history-search-forward
-    # behavior like peco.
-    # "\C-p": history-substring-search-backward
-    # "\C-n": history-substring-search-forward
-
     "\C-w": backward-kill-word
 $endif
