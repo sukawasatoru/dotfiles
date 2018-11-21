@@ -70,14 +70,12 @@ export CLICOLOR
 EDITOR=vim
 export EDITOR
 if [ -x /Applications/Sublime\ Text.app ]; then
-    if [ -x $HOME/bin ]; then
-        function sublime_text()
-        {
-            open -Wna /Applications/Sublime\ Text.app $@
-        }
-        VISUAL=sublime_text
-        export VISUAL
-    fi
+    VISUAL=sublime_text
+    export VISUAL
+    function sublime_text()
+    {
+        open -Wna /Applications/Sublime\ Text.app $@
+    }
 fi
 TZ=JST-9
 export TZ
