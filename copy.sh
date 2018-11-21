@@ -7,6 +7,8 @@ cp -rf ~/.bash_completion.d $(dirname $0)
 cp -f ~/.bash_profile $(dirname $0)
 cp -f ~/.bashrc $(dirname $0)
 cp -f ~/.gitconfig $(dirname $0)
+cp -f ~/.gitconfig.mac $(dirname $0)
+cp -f ~/.gitconfig.ubuntu $(dirname $0)
 cp -f ~/.gradle/gradle.properties $(dirname $0)/.gradle
 cp -f ~/.inputrc $(dirname $0)
 cp -f ~/.profile $(dirname $0)

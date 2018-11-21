@@ -1,5 +1,7 @@
 [include]
 	path = ~/.gitconfig.local
+	path = ~/.gitconfig.mac
+	path = ~/.gitconfig.ubuntu
 [color]
 	ui = auto
 [core]
@@ -17,14 +19,8 @@
 	default = simple
 [log]
 	follow = true
-[interactive]
-	diffFilter = /opt/local/share/git/contrib/diff-highlight/diff-highlight
 [commit]
 	gpgsign = true
-[pager]
-	diff = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
-	show = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
-	log = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

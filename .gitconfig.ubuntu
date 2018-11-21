@@ -1,0 +1,6 @@
+[interactive]
+	diffFilter = diff-highlight
+[pager]
+	diff = diff-highlight | less
+	show = diff-highlight | less
+	log = diff-highlight | less
