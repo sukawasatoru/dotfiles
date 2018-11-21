@@ -9,13 +9,16 @@
 [diff]
 	compactionheuristic = true
 [alias]
-	logg = log --graph --pretty=fuller --show-signature
-	showw = show --pretty=fuller --show-signature
+	logg = log --graph --pretty=fuller --show-signature --inter-hunk-context=20
+	showw = show --pretty=fuller --show-signature --inter-hunk-context=20
 	co = checkout
+	grepp = grep --function-context
 [push]
 	default = simple
 [log]
 	follow = true
+[interactive]
+	diffFilter = /opt/local/share/git/contrib/diff-highlight/diff-highlight
 [commit]
 	gpgsign = true
 [pager]
