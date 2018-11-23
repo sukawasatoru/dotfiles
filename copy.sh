@@ -17,6 +17,7 @@ cp -f ~/.vimrc $(dirname $0)
 
 if [ $(uname -s) = "Darwin" ]; then
     cp -f ~/.config/alacritty/alacritty.yml $(dirname $0)/.config/alacritty/alacritty_macos.yml
+    cp -f {~,$(dirname $0)}/Library/Preferences/IntelliJIdea2018.3/idea.vmoptions
     cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.ANDROID_HOME.plist
     cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
     cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.JAVA_HOME.plist

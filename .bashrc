@@ -26,15 +26,15 @@ if [ $(uname -s) = "Linux" ]; then
         fi
     fi
 
-    if [ "$(lsb_release -c | cut -f2)" != "xenial" ]; then
-        if ! shopt -oq posix; then
-            if [ -f /usr/share/bash-completion/bash_completion ]; then
-                . /usr/share/bash-completion/bash_completion
-            elif [ -f /etc/bash_completion ]; then
-                . /etc/bash_completion
-            fi
+    [[ "$(which lsb_release)" ]] && [[ "$(lsb_release -c | cut -f2)" = "xenial" ]] && COMPLETION_XENIAL=1
+    if ! shopt -oq posix; then
+        if [ -f /usr/share/bash-completion/bash_completion ]; then
+            . /usr/share/bash-completion/bash_completion
+        elif [ -f /etc/bash_completion ]; then
+            . /etc/bash_completion
         fi
     fi
+    unset COMPLETION_XENIAL
 fi
 
 shopt -s checkjobs
@@ -56,7 +56,7 @@ stty werase undef
 
 if [ -r /opt/local/share/bash-completion/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"
-    source /opt/local/etc/bash_completion
+    source /opt/local/share/bash-completion/bash_completion
 elif [ -r /opt/local/etc/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/etc/bash_completion"
     source /opt/local/etc/bash_completion
@@ -97,6 +97,7 @@ function peco-snippets() {
 # TODO: for windows 10 v1709
 [[ -z "$WSL" ]] && bind -x '"\C-x\C-x":peco-snippets'
 
+# https://github.com/rcaloras/bash-preexec
 # http://bearmini.hatenablog.com/entry/2016/02/16/222057
 if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
     source ~/src/bash-preexec/bash-preexec.sh

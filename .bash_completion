@@ -1,3 +1,7 @@
+echo $HOME/.bash_completion
+
+[[ "$(which lsb_release)" ]] && [[ "$(lsb_release -c | cut -f2)" = "xenial" ]] && [[ -z "$COMPLETION_XENIAL" ]] && return
+
 if [ -d ~/.bash_completion.d ]; then
     for COMPLETION in ~/.bash_completion.d/*; do
         echo "$HOME/.bash_completion: load $COMPLETION"

@@ -64,6 +64,10 @@ if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
     PATH=`python -m site --user-base`/bin:$PATH
 fi
 
+if [ "$(which yarn)" ]; then
+    PATH="$(yarn global bin):$PATH"
+fi
+
 LANG=en_US.UTF-8
 CLICOLOR=1
 export CLICOLOR
@@ -76,6 +80,8 @@ if [ -x /Applications/Sublime\ Text.app ]; then
     {
         open -Wna /Applications/Sublime\ Text.app $@
     }
+elif [ -x /opt/sublime_text/sublime_text ]; then
+    VISUAL=/opt/sublime_text/sublime_text
 fi
 TZ=JST-9
 export TZ
