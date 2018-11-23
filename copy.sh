@@ -14,6 +14,8 @@ cp -f ~/.inputrc $(dirname $0)
 cp -f ~/.profile $(dirname $0)
 cp -f ~/.tmux.conf $(dirname $0)
 cp -f ~/.vimrc $(dirname $0)
+cp -f ~/checkghossversion.toml $(dirname $0)
+cp -f ~/graphql_release.txt $(dirname $0)
 
 if [ $(uname -s) = "Darwin" ]; then
     cp -f ~/.config/alacritty/alacritty.yml $(dirname $0)/.config/alacritty/alacritty_macos.yml
