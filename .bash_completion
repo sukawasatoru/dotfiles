@@ -1,5 +1,6 @@
 echo $HOME/.bash_completion
 
+[[ "${COMPLETION_GUARD}" ]] && return
 [[ "$(which lsb_release)" ]] && [[ "$(lsb_release -c | cut -f2)" = "xenial" ]] && [[ -z "$COMPLETION_XENIAL" ]] && return
 
 if [ -d ~/.bash_completion.d ]; then
