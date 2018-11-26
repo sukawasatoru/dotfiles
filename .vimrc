@@ -66,11 +66,6 @@ endif
 
 filetype plugin indent on
 syntax enable
-
-" If you want to install not installed plugins on startup.
-"if dein#check_install()
-"
-
 "End dein Scripts-------------------------
 
 cmap w!! w !sudo tee > /dev/null %
