@@ -12,6 +12,12 @@ if [ "$bash_interactive" -a -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
-[[ "$(which trimhistory)" ]] && trimhistory ~/.bash_history
+if [ "$(which trimhistory)" ] && [ -x ~/src/terminal-history ]; then
+    pushd . > /dev/null
+    trimhistory -b ~/src/terminal-history/.bash_history ~/.bash_history
+    cd ~/src/terminal-history
+    [[ "$(git diff --name-only)" ]] && git add . && git commit -m "auto update $(date +%Y%m%d-%H%M%S)" > /dev/null
+    popd > /dev/null
+fi
 
 unset bash_interactive
