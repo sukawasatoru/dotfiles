@@ -1,0 +1,3 @@
+[[ -z "$(which hub)" ]] && return
+
+eval "$(hub alias -s)"
