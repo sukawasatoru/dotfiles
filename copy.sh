@@ -1,25 +1,27 @@
 #!/bin/bash -ux
 
-cp -f ~/.android/androidtool.cfg $(dirname $0)/.android
-cp -f ~/.bash_aliases $(dirname $0)
-cp -f ~/.bash_completion $(dirname $0)
-cp -rf ~/.bash_completion.d $(dirname $0)
-cp -f ~/.bash_profile $(dirname $0)
-cp -f ~/.bashrc $(dirname $0)
-cp -f ~/.gitconfig $(dirname $0)
-cp -f ~/.gitconfig.mac $(dirname $0)
-cp -f ~/.gitconfig.ubuntu $(dirname $0)
-cp -f ~/.gradle/gradle.properties $(dirname $0)/.gradle
-cp -f ~/.inputrc $(dirname $0)
-cp -f ~/.profile $(dirname $0)
-cp -f ~/.tmux.conf $(dirname $0)
-cp -f ~/.vimrc $(dirname $0)
-cp -f ~/checkghossversion.toml $(dirname $0)
+target=$(dirname $0)
+
+cp -f ~/.android/androidtool.cfg $target/.android
+cp -f ~/.bash_aliases $target
+cp -f ~/.bash_completion $target
+cp -rf ~/.bash_completion.d $target
+cp -f ~/.bash_profile $target
+cp -f ~/.bashrc $target
+cp -f ~/.gitconfig $target
+cp -f ~/.gitconfig.mac $target
+cp -f ~/.gitconfig.ubuntu $target
+cp -f ~/.config/git/ignore $target/.config/git
+cp -f ~/.gradle/gradle.properties $target/.gradle
+cp -f ~/.inputrc $target
+cp -f ~/.profile $target
+cp -f ~/.tmux.conf $target
+cp -f ~/.vimrc $target
 
 if [ $(uname -s) = "Darwin" ]; then
-    cp -f ~/.config/alacritty/alacritty.yml $(dirname $0)/.config/alacritty/alacritty_macos.yml
-    cp -f {~,$(dirname $0)}/Library/Preferences/IntelliJIdea2018.3/idea.vmoptions
-    cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.ANDROID_HOME.plist
-    cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
-    cp -f {~,$(dirname $0)}/Library/LaunchAgents/setenv.JAVA_HOME.plist
+    cp -f ~/.config/alacritty/alacritty.yml $target/.config/alacritty/alacritty_macos.yml
+    cp -f {~,$target}/Library/Preferences/IntelliJIdea2018.3/idea.vmoptions
+    cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_HOME.plist
+    cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
+    cp -f {~,$target}/Library/LaunchAgents/setenv.JAVA_HOME.plist
 fi

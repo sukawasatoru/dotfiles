@@ -64,8 +64,8 @@ if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
     PATH=`python -m site --user-base`/bin:$PATH
 fi
 
-if [ "$(which yarn)" ]; then
-    PATH="$(yarn global bin):$PATH"
+if [ "`which yarn`" ]; then
+    PATH="`yarn global bin`:$PATH"
 fi
 
 LANG=en_US.UTF-8

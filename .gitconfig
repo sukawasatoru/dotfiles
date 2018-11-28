@@ -9,6 +9,7 @@
 	compression = 9
 	autocrlf = false
 [diff]
+	algorithm = minimal
 	compactionheuristic = true
 [alias]
 	logg = log --graph --pretty=fuller --show-signature --inter-hunk-context=20
