@@ -20,8 +20,10 @@ function alias_linux()
         alias ls='ls --time-style=long-iso'
     fi
     [[ "$(which notify-send)" ]] && alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-    [[ $(which trash-put) ]] && alias rm=trash-put
+    [[ "$(which trash-put)" ]] && alias rm=trash-put
 }
+
+[[ "$TMUX" ]] && alias htop="tmux new-window -t 2 -n htop 'exec sudo htop'"
 
 case $(uname -s) in
     "Darwin")
