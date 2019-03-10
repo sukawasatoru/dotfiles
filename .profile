@@ -38,7 +38,10 @@ if [ -x $HOME/.local/bin ]; then
     PATH=$HOME/.local/bin:$PATH
 fi
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
-# export JAVA_HOME=`/usr/libexec/java_home`
+if [ -x /usr/libexec/java_home -a -x "`/usr/libexec/java_home 2> /dev/null`" ]; then
+    JAVA_HOME=`/usr/libexec/java_home`
+    export JAVA_HOME
+fi
 
 if [ -x $HOME/.cargo/bin ]; then
     PATH="$HOME/.cargo/bin:$PATH"
@@ -64,11 +67,17 @@ if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
     PATH=`python -m site --user-base`/bin:$PATH
 fi
 
+if [ -x "$HOME/.nvm" ]; then
+    NVM_DIR="$HOME/.nvm"
+    export NVM_DIR
+fi
+
 if [ "`which yarn`" ]; then
     PATH="`yarn global bin`:$PATH"
 fi
 
 LANG=en_US.UTF-8
+export LANG
 CLICOLOR=1
 export CLICOLOR
 EDITOR=vim

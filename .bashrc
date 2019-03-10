@@ -52,11 +52,12 @@ IGNOREEOF=10
 stty werase undef
 
 [[ -f ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
+[[ "$NVM_DIR" ]] && source $NVM_DIR/nvm.sh
 [[ -f ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
 
-if [ -r /opt/local/share/bash-completion/bash_completion ]; then
-    echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"
-    source /opt/local/share/bash-completion/bash_completion
+if [ -r /opt/local/etc/profile.d/bash_completion.sh ]; then
+    echo "$HOME/.bashrc: load /opt/local/etc/profile.d/bash_completion.sh"
+    source /opt/local/etc/profile.d/bash_completion.sh
 elif [ -r /opt/local/etc/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/etc/bash_completion"
     source /opt/local/etc/bash_completion

@@ -1,6 +1,11 @@
+[gpg]
+	program = gpg2
 [interactive]
-	diffFilter = /opt/local/share/git/contrib/diff-highlight/diff-highlight
+	diffFilter = diff-highlight
 [pager]
-	diff = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
-	show = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
-	log = /opt/local/share/git/contrib/diff-highlight/diff-highlight | less
+	diff = diff-highlight | less
+	show = diff-highlight | less
+	log = diff-highlight | less
+[credential]
+	helper = osxkeychain
+# vim: noexpandtab

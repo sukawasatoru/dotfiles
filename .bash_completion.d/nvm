@@ -1,0 +1,3 @@
+[[ -z "$NVM_DIR" ]] && return
+
+source "$NVM_DIR/bash_completion"
