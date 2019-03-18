@@ -14,9 +14,14 @@ fi
 
 if [ "$(which trimhistory)" ] && [ -x ~/src/terminal-history ]; then
     pushd . > /dev/null
-    trimhistory trim -b ~/src/terminal-history/.bash_history ~/.bash_history
-    [[ -r "$HOME/Library/Application Support/jp.tinyport.trimhistory/statistics.toml" ]] && cp "$HOME/Library/Application Support/jp.tinyport.trimhistory/statistics.toml" ~/src/terminal-history
-    cd ~/src/terminal-history
+    trimhistory trim -b $HOME/src/terminal-history/.bash_history $HOME/.bash_history
+    if [ -r "$HOME/Library/Application Support/jp.tinyport.trimhistory/statistics.toml" ]; then
+        cp "$HOME/Library/Application Support/jp.tinyport.trimhistory/statistics.toml" $HOME/src/terminal-history
+    elif [ -r $HOME/.local/share/trimhistory/statistics.toml ]; then
+        cp $HOME/.local/share/trimhistory/statistics.toml $HOME/src/terminal-history
+    fi
+
+    cd $HOME/src/terminal-history
     [[ "$(git diff --name-only)" ]] && git add . && git commit -m "auto update $(date +%Y%m%d-%H%M%S)" > /dev/null
     popd > /dev/null
 fi

@@ -2,8 +2,6 @@
 
 echo $HOME/.bashrc
 
-[[ -f /proc/version ]] && [[ "$(grep Microsoft /proc/version)" ]] && WSL=1
-
 if [ $(uname -s) = "Linux" ]; then
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -52,12 +50,11 @@ IGNOREEOF=10
 stty werase undef
 
 [[ -f ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
-[[ "$NVM_DIR" ]] && source $NVM_DIR/nvm.sh
 [[ -f ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
 
-if [ -r /opt/local/etc/profile.d/bash_completion.sh ]; then
-    echo "$HOME/.bashrc: load /opt/local/etc/profile.d/bash_completion.sh"
-    source /opt/local/etc/profile.d/bash_completion.sh
+if [ -r /opt/local/share/bash-completion/bash_completion ]; then
+    echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"
+    source /opt/local/share/bash-completion/bash_completion
 elif [ -r /opt/local/etc/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/etc/bash_completion"
     source /opt/local/etc/bash_completion
@@ -79,8 +76,7 @@ peco_history() {
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
-# TODO: for windows 10 v1709
-[[ -z "$WSL" ]] && bind -x '"\C-r": peco_history'
+bind -x '"\C-r": peco_history'
 
 # http://blog.glidenote.com/blog/2014/06/26/snippets-peco-percol/
 function peco-snippets() {
@@ -91,12 +87,11 @@ function peco-snippets() {
         return 1
     fi
 
-    declare l=$(grep -v "^#" ~/.snippets | peco --query "$READLINE_LINE" | sed "s/^\[.*\] *//g")
+    declare l=$(peco --query "$READLINE_LINE" ~/.snippets | sed "s/^\[.*\] *//g")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
-# TODO: for windows 10 v1709
-[[ -z "$WSL" ]] && bind -x '"\C-x\C-x":peco-snippets'
+bind -x '"\C-x\C-x":peco-snippets'
 
 # https://github.com/rcaloras/bash-preexec
 # http://bearmini.hatenablog.com/entry/2016/02/16/222057
@@ -130,5 +125,3 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
         _tn_cmd=''
     }
 fi
-
-unset WSL

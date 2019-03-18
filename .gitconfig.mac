@@ -8,4 +8,4 @@
 	log = diff-highlight | less
 [credential]
 	helper = osxkeychain
-# vim: noexpandtab
+# vim: syntax=gitconfig noexpandtab

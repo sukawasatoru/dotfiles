@@ -37,6 +37,7 @@ fi
 if [ -x $HOME/.local/bin ]; then
     PATH=$HOME/.local/bin:$PATH
 fi
+
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
 if [ -x /usr/libexec/java_home -a -x "`/usr/libexec/java_home 2> /dev/null`" ]; then
     JAVA_HOME=`/usr/libexec/java_home`
@@ -47,15 +48,11 @@ if [ -x $HOME/.cargo/bin ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -x $HOME/.ndenv/bin ]; then
-    PATH=$PATH:$HOME/.ndenv/bin
-fi
-
-if [ -x ~/Applications/terminal-notifier.app ]; then
+if [ -x $HOME/Applications/terminal-notifier.app ]; then
     PATH=$HOME/Applications/terminal-notifier.app/Contents/MacOS:$PATH
 fi
 
-if [ -x ~/src/rust-myscript/target/release ]; then
+if [ -x $HOME/src/rust-myscript/target/release ]; then
     PATH=$HOME/src/rust-myscript/target/release:$PATH
 fi
 
@@ -67,9 +64,10 @@ if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
     PATH=`python -m site --user-base`/bin:$PATH
 fi
 
-if [ -x "$HOME/.nvm" ]; then
-    NVM_DIR="$HOME/.nvm"
+if [ -x $HOME/.nvm ]; then
+    NVM_DIR=$HOME/.nvm
     export NVM_DIR
+    . $NVM_DIR/nvm.sh
 fi
 
 if [ "`which yarn`" ]; then
@@ -89,8 +87,10 @@ if [ -x /Applications/Sublime\ Text.app ]; then
     {
         open -Wna /Applications/Sublime\ Text.app $@
     }
+    export -f sublime_text
 elif [ -x /opt/sublime_text/sublime_text ]; then
     VISUAL=/opt/sublime_text/sublime_text
+    export VISUAL
 fi
 TZ=JST-9
 export TZ
