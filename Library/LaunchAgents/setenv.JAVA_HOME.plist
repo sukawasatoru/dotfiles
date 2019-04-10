@@ -9,7 +9,7 @@
         <array>
             <string>sh</string>
             <string>-c</string>
-            <string>launchctl setenv JAVA_HOME /opt/zulu11.1+23-ea-jdk11-macosx_x64</string>
+            <string>launchctl setenv JAVA_HOME /opt/zulu12.1.3-ca-jdk12-macosx_x64</string>
         </array>
 
         <key>RunAtLoad</key>

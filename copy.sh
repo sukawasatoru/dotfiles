@@ -24,4 +24,5 @@ if [ $(uname -s) = "Darwin" ]; then
     cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_HOME.plist
     cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
     cp -f {~,$target}/Library/LaunchAgents/setenv.JAVA_HOME.plist
+    cp -rf ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User $target/Library/Application\ Support/Sublime\ Text\ 3/Packages
 fi

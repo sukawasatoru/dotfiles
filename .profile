@@ -44,6 +44,11 @@ if [ -x /usr/libexec/java_home -a -x "`/usr/libexec/java_home 2> /dev/null`" ]; 
     export JAVA_HOME
 fi
 
+if [ -z "$JAVA_HOME" -a -x /opt/zulu12.1.3-ca-jdk12-macosx_x64 ]; then
+    JAVA_HOME=/opt/zulu12.1.3-ca-jdk12-macosx_x64
+    export JAVA_HOME
+fi
+
 if [ -x $HOME/.cargo/bin ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
@@ -54,6 +59,10 @@ fi
 
 if [ -x $HOME/src/rust-myscript/target/release ]; then
     PATH=$HOME/src/rust-myscript/target/release:$PATH
+fi
+
+if [ -x $HOME/src/ripgrep/target/release ]; then
+    PATH=$HOME/src/ripgrep/target/release:$PATH
 fi
 
 if [ -n "`which mypathhelper`" ]; then

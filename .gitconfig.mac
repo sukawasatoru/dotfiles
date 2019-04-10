@@ -1,5 +1,5 @@
 [gpg]
-	program = gpg2
+	program = /opt/local/bin/gpg2
 [interactive]
 	diffFilter = diff-highlight
 [pager]

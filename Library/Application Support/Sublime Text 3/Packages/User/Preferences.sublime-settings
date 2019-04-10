@@ -1,0 +1,11 @@
+{
+	"auto_complete": false,
+	"color_scheme": "Packages/User/fairyfloss.tmTheme",
+	"font_face": "Inconsolata",
+	"ignored_packages":
+	[
+		"IMESupport",
+		"Vintage"
+	],
+	"theme": "Default.sublime-theme"
+}

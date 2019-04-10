@@ -1,3 +1,4 @@
 [[ -z "$(which pip)" ]] && return
+[[ "$(pip --version 2> /dev/null | sed -e 's/.*python \([^)]*\))$/\1/')" = "2.7" ]] && return
 
 eval "$(pip completion --bash)"

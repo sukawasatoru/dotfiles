@@ -49,8 +49,9 @@ IGNOREEOF=10
 # for "C-w" on .inputrc
 stty werase undef
 
-[[ -f ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
-[[ -f ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
+[[ -r ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
+[[ -r ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
+[[ -r $NVM_DIR/nvm.sh ]] && source $NVM_DIR/nvm.sh
 
 if [ -r /opt/local/share/bash-completion/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"

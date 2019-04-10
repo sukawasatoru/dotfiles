@@ -12,7 +12,7 @@ if [ "$bash_interactive" -a -f $HOME/.bashrc ]; then
     source $HOME/.bashrc
 fi
 
-if [ "$(which trimhistory)" ] && [ -x ~/src/terminal-history ]; then
+if [ "$(which trimhistory)" ] && [ -x $HOME/src/terminal-history ]; then
     pushd . > /dev/null
     trimhistory trim -b $HOME/src/terminal-history/.bash_history $HOME/.bash_history
     if [ -r "$HOME/Library/Application Support/jp.tinyport.trimhistory/statistics.toml" ]; then
