@@ -1,0 +1,22 @@
+{
+	"clients":
+	{
+		"vue-ls":
+		{
+			"command":
+			[
+				"vls"
+			],
+			"enabled": false,
+			"languageId": "vue",
+			"scopes":
+			[
+				"text.html.vue"
+			],
+			"syntaxes":
+			[
+				"Packages/Vue Syntax Highlight/vue.tmLanguage"
+			]
+		}
+	}
+}
