@@ -1,6 +1,6 @@
 function launchlog()
 {
-    if [ "PS1" ]; then
+    if [ "$PS1" ]; then
         echo $@
     fi
 }
