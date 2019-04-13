@@ -1,12 +1,18 @@
-if [ "$PS1" ]; then
-    echo $HOME/.profile
-fi
+function launchlog()
+{
+    if [ "PS1" ]; then
+        echo $@
+    fi
+}
+
+launchlog $HOME/.profile
 
 if [ -f /proc/version ] && [ "`grep Microsoft /proc/version`" ]; then
     umask 0022
 fi
 
 if [ -x /usr/libexec/path_helper ]; then
+    launchlog $HOME/.profile: invoke /usr/libexec/path_helper
     eval `/usr/libexec/path_helper`
 fi
 
@@ -40,6 +46,7 @@ fi
 
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
 if [ -x /usr/libexec/java_home -a -x "`/usr/libexec/java_home 2> /dev/null`" ]; then
+    launchlog $HOME/.profile: invoke /usr/libexec/java_home
     JAVA_HOME=`/usr/libexec/java_home`
     export JAVA_HOME
 fi
@@ -66,20 +73,22 @@ if [ -x $HOME/src/ripgrep/target/release ]; then
 fi
 
 if [ -n "`which mypathhelper`" ]; then
+    launchlog $HOME/.profile: invoke mypathhelper
     PATH=`mypathhelper`
 fi
 
 if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
+    launchlog $HOME/.profile: invoke python
     PATH=`python -m site --user-base`/bin:$PATH
 fi
 
 if [ -x $HOME/.nvm ]; then
     NVM_DIR=$HOME/.nvm
     export NVM_DIR
-    . $NVM_DIR/nvm.sh
 fi
 
 if [ "`which yarn`" ]; then
+    launchlog $HOME/.profile: invoke yarn
     PATH="`yarn global bin`:$PATH"
 fi
 
