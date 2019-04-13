@@ -5,7 +5,7 @@ target=$(dirname $0)
 cp -f ~/.android/androidtool.cfg $target/.android
 cp -f ~/.bash_aliases $target
 cp -f ~/.bash_completion $target
-cp -rf ~/.bash_completion.d $target
+rsync --delete -crltvhi ~/.bash_completion.d $target
 cp -f ~/.bash_profile $target
 cp -f ~/.bashrc $target
 cp -f ~/.gitconfig $target

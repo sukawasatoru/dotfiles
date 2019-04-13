@@ -1,3 +1,0 @@
-[[ -z "$(which ndenv)" ]] && return
-
-eval "$(ndenv init -)"
