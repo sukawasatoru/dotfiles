@@ -87,9 +87,10 @@ if [ -x $HOME/.nvm ]; then
     export NVM_DIR
 fi
 
-if [ "`which yarn`" ]; then
-    launchlog $HOME/.profile: invoke yarn
-    PATH="`yarn global bin`:$PATH"
+if [ -x $HOME/.yarn/bin ]; then
+    # for nvm
+    # PATH="`yarn global bin`:$PATH"
+    PATH=$PATH:$HOME/.yarn/bin
 fi
 
 LANG=en_US.UTF-8
