@@ -1,19 +1,19 @@
-function launchlog()
+launchlog()
 {
     if [ "$PS1" ]; then
-        echo $@
+        echo "$@"
     fi
 }
 
-launchlog $HOME/.profile
+launchlog "$HOME/.profile"
 
-if [ -f /proc/version ] && [ "`grep Microsoft /proc/version`" ]; then
+if [ -f /proc/version ] && grep -q Microsoft /proc/version; then
     umask 0022
 fi
 
 if [ -x /usr/libexec/path_helper ]; then
-    launchlog $HOME/.profile: invoke /usr/libexec/path_helper
-    eval `/usr/libexec/path_helper`
+    launchlog "$HOME"/.profile: invoke /usr/libexec/path_helper
+    eval "$(/usr/libexec/path_helper)"
 fi
 
 if [ -x /opt/local/sbin ]; then
@@ -36,58 +36,58 @@ if [ -x /opt/android-sdk-macosx ]; then
     PATH=/opt/android-sdk-macosx/platform-tools:$PATH
 fi
 
-if [ -x $HOME/bin ]; then
+if [ -x "$HOME/bin" ]; then
     PATH=$HOME/bin:$PATH
 fi
 
-if [ -x $HOME/.local/bin ]; then
+if [ -x "$HOME/.local/bin" ]; then
     PATH=$HOME/.local/bin:$PATH
 fi
 
 # ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
-if [ -x /usr/libexec/java_home -a -x "`/usr/libexec/java_home 2> /dev/null`" ]; then
-    launchlog $HOME/.profile: invoke /usr/libexec/java_home
-    JAVA_HOME=`/usr/libexec/java_home`
+if [ -x /usr/libexec/java_home ] && [ -x "$(/usr/libexec/java_home 2> /dev/null)" ]; then
+    launchlog "$HOME/.profile: invoke /usr/libexec/java_home"
+    JAVA_HOME=$(/usr/libexec/java_home)
     export JAVA_HOME
 fi
 
-if [ -z "$JAVA_HOME" -a -x /opt/zulu12.1.3-ca-jdk12-macosx_x64 ]; then
+if [ -z "$JAVA_HOME" ] && [ -x /opt/zulu12.1.3-ca-jdk12-macosx_x64 ]; then
     JAVA_HOME=/opt/zulu12.1.3-ca-jdk12-macosx_x64
     export JAVA_HOME
 fi
 
-if [ -x $HOME/.cargo/bin ]; then
+if [ -x "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -x $HOME/Applications/terminal-notifier.app ]; then
+if [ -x "$HOME/Applications/terminal-notifier.app" ]; then
     PATH=$HOME/Applications/terminal-notifier.app/Contents/MacOS:$PATH
 fi
 
-if [ -x $HOME/src/rust-myscript/target/release ]; then
+if [ -x "$HOME/src/rust-myscript/target/release" ]; then
     PATH=$HOME/src/rust-myscript/target/release:$PATH
 fi
 
-if [ -x $HOME/src/ripgrep/target/release ]; then
+if [ -x "$HOME/src/ripgrep/target/release" ]; then
     PATH=$HOME/src/ripgrep/target/release:$PATH
 fi
 
-if [ -n "`which mypathhelper`" ]; then
-    launchlog $HOME/.profile: invoke mypathhelper
-    PATH=`mypathhelper`
+if [ -n "$(command -v mypathhelper)" ]; then
+    launchlog "$HOME/.profile: invoke mypathhelper"
+    PATH=$(mypathhelper)
 fi
 
-if [ "`which python`" -a -x "`python -m site --user-base`/bin" ]; then
-    launchlog $HOME/.profile: invoke python
-    PATH=`python -m site --user-base`/bin:$PATH
+if [ "$(command -v python)" ] && [ -x "$(python -m site --user-base)/bin" ]; then
+    launchlog "$HOME/.profile: invoke python"
+    PATH=$(python -m site --user-base)/bin:$PATH
 fi
 
-if [ -x $HOME/.nvm ]; then
+if [ -x "$HOME/.nvm" ]; then
     NVM_DIR=$HOME/.nvm
     export NVM_DIR
 fi
 
-if [ -x $HOME/.yarn/bin ]; then
+if [ -x "$HOME/.yarn/bin" ]; then
     # for nvm
     # PATH="`yarn global bin`:$PATH"
     PATH=$PATH:$HOME/.yarn/bin
@@ -102,9 +102,9 @@ export EDITOR
 if [ -x /Applications/Sublime\ Text.app ]; then
     VISUAL=sublime_text
     export VISUAL
-    function sublime_text()
+    sublime_text()
     {
-        open -Wna /Applications/Sublime\ Text.app $@
+        open -Wna /Applications/Sublime\ Text.app "$@"
     }
     export -f sublime_text
 elif [ -x /opt/sublime_text/sublime_text ]; then

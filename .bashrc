@@ -1,8 +1,8 @@
 [[ -z "$PS1" ]] && return
 
-echo $HOME/.bashrc
+echo "$HOME/.bashrc"
 
-if [ $(uname -s) = "Linux" ]; then
+if [ "$(uname -s)" = "Linux" ]; then
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
     if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
@@ -24,7 +24,7 @@ if [ $(uname -s) = "Linux" ]; then
         fi
     fi
 
-    [[ "$(which lsb_release)" ]] && [[ "$(lsb_release -c | cut -f2)" = "xenial" ]] && COMPLETION_XENIAL=1
+    [[ "$(command -v lsb_release)" ]] && [[ "$(lsb_release -c | cut -f2)" = "xenial" ]] && COMPLETION_XENIAL=1
     if ! shopt -oq posix; then
         if [ -f /usr/share/bash-completion/bash_completion ]; then
             . /usr/share/bash-completion/bash_completion
@@ -49,9 +49,9 @@ IGNOREEOF=10
 # for "C-w" on .inputrc
 stty werase undef
 
-[[ -r ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source $HOME/.bash_aliases
-[[ -r ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source $HOME/lib/azure-cli/az.completion
-[[ -r $NVM_DIR/nvm.sh ]] && echo "$HOME/.bashrc: load $NVM_DIR/nvm.sh" && source $NVM_DIR/nvm.sh --no-use
+[[ -r ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source "$HOME/.bash_aliases"
+[[ -r ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source "$HOME/lib/azure-cli/az.completion"
+[[ -r $NVM_DIR/nvm.sh ]] && echo "$HOME/.bashrc: load $NVM_DIR/nvm.sh" && source "$NVM_DIR/nvm.sh" --no-use
 
 if [ -r /opt/local/share/bash-completion/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"
@@ -73,7 +73,7 @@ fi
 
 # https://gist.github.com/umeyuki/0267d8e995e32012cfe8
 peco_history() {
-    declare l=$(HISTTIMEFORMAT=  history | LC_ALL=C sort -r |  awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}'   |  peco --query "$READLINE_LINE")
+    declare l=$(HISTTIMEFORMAT= history | LC_ALL=C sort -r | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --query "$READLINE_LINE")
     READLINE_LINE="$l"
     READLINE_POINT=${#l}
 }
@@ -81,9 +81,6 @@ bind -x '"\C-r": peco_history'
 
 # http://blog.glidenote.com/blog/2014/06/26/snippets-peco-percol/
 function peco-snippets() {
-    local line
-    local snippet
-
     if [ ! -e ~/.snippets ]; then
         return 1
     fi
@@ -116,7 +113,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
                     terminal-notifier -message "Finished: $_tn_cmd"
                     ;;
                 "Linux")
-                    [[ "$(alias -p | grep alias\ alert=)" ]] && alert "Finished: $_tn_cmd"
+                    alias -p | grep -q "alias alert=" && alert "Finished: $_tn_cmd"
                     ;;
                 *)
                     ;;
