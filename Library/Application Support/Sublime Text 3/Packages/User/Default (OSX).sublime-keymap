@@ -2,12 +2,6 @@
     { "keys": ["ctrl+]"], "command": "goto_definition" },
     { "keys": ["ctrl+o"], "command": "jump_back" },
     { "keys": ["ctrl+i"], "command": "jump_forward" },
-    { "keys": ["ctrl+y"], "command": "scroll_lines", "args": {"amount": 1.0} },
-    { "keys": ["ctrl+e"], "command": "scroll_lines", "args": {"amount": -1.0} },
     { "keys": ["ctrl+w", "ctrl+shift+w"], "command": "focus_neighboring_group", "args": {"forward": false} },
     { "keys": ["ctrl+w", "ctrl+w"], "command": "focus_neighboring_group" },
-    { "keys": ["ctrl+tab"], "command": "next_view" },
-    { "keys": ["ctrl+shift+tab"], "command": "prev_view" },
-    { "keys": ["ctrl+m"],  "command": "insert", "args": {"characters": "\n"} },
-    { "keys": ["alt+m"], "command": "move_to", "args": {"to": "brackets"} },
 ]

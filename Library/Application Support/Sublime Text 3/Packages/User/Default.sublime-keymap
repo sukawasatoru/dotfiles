@@ -1,0 +1,9 @@
+[
+	{ "keys": ["ctrl+tab"], "command": "next_view" },
+	{ "keys": ["ctrl+shift+tab"], "command": "prev_view" },
+	{ "keys": ["ctrl+m"],  "command": "insert", "args": {"characters": "\n"} },
+	{ "keys": ["alt+m"], "command": "move_to", "args": {"to": "brackets"} },
+	{ "keys": ["ctrl+y"], "command": "scroll_lines", "args": {"amount": 1.0 } },
+	{ "keys": ["ctrl+e"], "command": "scroll_lines", "args": {"amount": -1.0 } },
+	{ "keys": ["ctrl+t"], "command": "new_file" },
+]
