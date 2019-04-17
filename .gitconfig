@@ -11,9 +11,11 @@
 [diff]
 	algorithm = minimal
 	compactionheuristic = true
+	interHunkContext = 20
 [alias]
-	logg = log --graph --pretty=fuller --show-signature --inter-hunk-context=20
-	showw = show --pretty=fuller --show-signature --inter-hunk-context=20
+	difff = diff --find-renames=3 --find-copies=3
+	logg = log --graph --pretty=fuller --show-signature --find-renames=3 --find-copies=3 --function-context
+	showw = show --pretty=fuller --show-signature --function-context
 	co = checkout
 	grepp = grep --function-context
 [push]

@@ -1,5 +1,6 @@
-#!/bin/bash -ux
+#!/usr/bin/env bash
 
+set -ux
 target=$(dirname $0)
 
 cp -f ~/.android/androidtool.cfg $target/.android
