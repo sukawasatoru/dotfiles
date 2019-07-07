@@ -1,9 +1,0 @@
--Xms512m
--XX:NewRatio=1
--XX:GCTimeRatio=19
--XX:+UseCompressedOops
--XX:-UseCodeCacheFlushing
--XX:ReservedCodeCacheSize=480m
--XX:+UseConcMarkSweepGC
--XX:+AggressiveOpts
--XX:SoftRefLRUPolicyMSPerMB=50

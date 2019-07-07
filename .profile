@@ -60,6 +60,11 @@ if [ -x "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -n "$(command -v sccache)" ]; then
+    RUSTC_WRAPPER=$(command -v sccache)
+    export RUSTC_WRAPPER
+fi
+
 if [ -x "$HOME/Applications/terminal-notifier.app" ]; then
     PATH=$HOME/Applications/terminal-notifier.app/Contents/MacOS:$PATH
 fi
@@ -85,7 +90,12 @@ fi
 if [ -x "$HOME/.nvm" ]; then
     NVM_DIR=$HOME/.nvm
     export NVM_DIR
+    if [ "$(uname -s)" = "Darwin" ]; then
+        launchlog "$HOME/.profile: load $NVM_DIR/nvm.sh"
+        source "$NVM_DIR/nvm.sh"
+    fi
 fi
+
 
 if [ -x "$HOME/.yarn/bin" ]; then
     # for nvm

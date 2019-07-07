@@ -12,6 +12,7 @@
 		"IMESupport",
 		"OmniMarkupPreviewer",
 		"Package Control",
+		"SublimeLinter-shellcheck",
 		"TabNine",
 		"TypeScript",
 		"Vue Syntax Highlight",
