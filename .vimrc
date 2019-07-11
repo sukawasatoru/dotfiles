@@ -60,6 +60,7 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/neosnippet-snippets')
   call dein#add('scrooloose/syntastic')
   call dein#add('tbodt/deoplete-tabnine', {'build': './install.sh'})
+  call dein#add('altercation/vim-colors-solarized')
 
   call dein#end()
   call dein#save_state()
@@ -69,5 +70,10 @@ filetype plugin indent on
 syntax enable
 "End dein Scripts-------------------------
 
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set background=dark
+set t_Co=256
+colorscheme solarized
 cmap w!! w !sudo tee > /dev/null %
 let g:deoplete#enable_at_startup = 1
