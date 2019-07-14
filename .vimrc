@@ -76,4 +76,5 @@ set background=dark
 set t_Co=256
 colorscheme solarized
 cmap w!! w !sudo tee > /dev/null %
+command Ub Unite buffer
 let g:deoplete#enable_at_startup = 1
