@@ -53,7 +53,8 @@ if dein#load_state('~/.cache/dein')
   call dein#add('Shougo/deoplete.nvim')
   if !has('nvim')
     call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
+    " https://github.com/neovim/neovim/wiki/Following-HEAD#20181118
+    call dein#add('roxma/vim-hug-neovim-rpc', {'build': 'sudo pip3 install pynvim && pip3 install --user pynvim'})
   endif
 " TODO: https://github.com/Shougo/neosnippet.vim#configuration
   call dein#add('Shougo/neosnippet')
@@ -61,6 +62,9 @@ if dein#load_state('~/.cache/dein')
   call dein#add('scrooloose/syntastic')
   call dein#add('tbodt/deoplete-tabnine', {'build': './install.sh'})
   call dein#add('altercation/vim-colors-solarized')
+  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('prabirshrestha/async.vim')
+  call dein#add('prabirshrestha/vim-lsp')
 
   call dein#end()
   call dein#save_state()
@@ -70,11 +74,21 @@ filetype plugin indent on
 syntax enable
 "End dein Scripts-------------------------
 
+"  `pip install --user python-language-server`
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+        \ })
+endif
 let g:solarized_termcolors=256
 let g:solarized_termtrans=1
 set background=dark
 set t_Co=256
 colorscheme solarized
 cmap w!! w !sudo tee > /dev/null %
-command Ub Unite buffer
 let g:deoplete#enable_at_startup = 1
+command UB Unite buffer
+command Ub Unite buffer
+command LD LspDefinition

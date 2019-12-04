@@ -60,11 +60,6 @@ if [ -x "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
 
-if [ -n "$(command -v sccache)" ]; then
-    RUSTC_WRAPPER=$(command -v sccache)
-    export RUSTC_WRAPPER
-fi
-
 if [ -x "$HOME/Applications/terminal-notifier.app" ]; then
     PATH=$HOME/Applications/terminal-notifier.app/Contents/MacOS:$PATH
 fi

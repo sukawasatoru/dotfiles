@@ -1,12 +1,11 @@
 {
-    "files.autoSave": "onFocusChange",
-    "editor.cursorStyle": "block",
-    "editor.minimap.enabled": false,
-    "workbench.activityBar.visible": false,
-    "workbench.statusBar.feedback.visible": false,
-    "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "editor.lineNumbers": "off",
+    "editor.minimap.enabled": false,
     "editor.renderIndentGuides": false,
-    "editor.lineNumbers": "off"
+    "editor.suggestSelection": "first",
+    "files.autoSave": "onFocusChange",
+    "workbench.activityBar.visible": false,
+    "workbench.tree.indent": 12
 }
