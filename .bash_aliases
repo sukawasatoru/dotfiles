@@ -25,6 +25,7 @@ alias_linux()
 }
 
 [[ "$TMUX" ]] && alias htop="tmux new-window -t 2 -n htop 'exec sudo htop'"
+[[ "$TMUX" ]] && alias s-tui="tmux new-window -t 1 'exec s-tui'"
 
 case $(uname -s) in
     "Darwin")
