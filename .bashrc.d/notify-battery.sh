@@ -13,7 +13,7 @@ REMAINING=$(sed -e "s/.*; \([0-9:]* remaining present\).*/\1/" <<<"$OUTPUT")
 PAYLOAD=$(cat <<EOM
 payload={
     "icon_emoji": ":computer:",
-    "username": "vieena-mac2",
+    "username": "$NOTIFY_BATTERY_USERNAME",
     "text": "Battery: $BATTERY%, $REMAINING"
 }
 EOM
