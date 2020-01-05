@@ -108,7 +108,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
             return
         fi
         if [[ $dur -gt 60 ]]; then
-            if [[ -v SSH_TTY ]]; then
+            if [[ ! -v SSH_TTY ]]; then
                 case $(uname -s) in
                     "Darwin")
                         terminal-notifier -message "Finished: $_tn_cmd"
