@@ -125,3 +125,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
         _tn_cmd=''
     }
 fi
+
+if [[ $(uname -s) == Darwin ]] && [[ -r $HOME/.bashrc.d/notify-battery.sh ]] && ! ps | grep -v grep |  grep -q notify-battery.sh; then
+    bash -c "while true; do $HOME/.bashrc.d/notify-battery.sh; sleep 180; done"  2>&1 &
+fi

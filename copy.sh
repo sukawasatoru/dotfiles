@@ -9,6 +9,7 @@ cp -f ~/.bash_completion $target
 rsync --delete -crltvhi ~/.bash_completion.d $target
 cp -f ~/.bash_profile $target
 cp -f ~/.bashrc $target
+rsync --delete -crltvhi ~/.bashrc.d $target
 cp -f ~/.config/git/ignore $target/.config/git
 cp -f ~/.gitconfig $target
 cp -f ~/.gitconfig.mac $target
