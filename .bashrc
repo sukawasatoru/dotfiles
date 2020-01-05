@@ -108,16 +108,18 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
             return
         fi
         if [[ $dur -gt 60 ]]; then
-            case $(uname -s) in
-                "Darwin")
-                    terminal-notifier -message "Finished: $_tn_cmd"
-                    ;;
-                "Linux")
-                    alias -p | grep -q "alias alert=" && alert "Finished: $_tn_cmd"
-                    ;;
-                *)
-                    ;;
-            esac
+            if [[ $SSH_TTY ]]; then
+                case $(uname -s) in
+                    "Darwin")
+                        terminal-notifier -message "Finished: $_tn_cmd"
+                        ;;
+                    "Linux")
+                        alias -p | grep -q "alias alert=" && alert "Finished: $_tn_cmd"
+                        ;;
+                    *)
+                        ;;
+                esac
+            fi
             echo elapsed time: $dur seconds
         fi
         _tn_cmd=''
