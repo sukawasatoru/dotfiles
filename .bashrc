@@ -2,6 +2,8 @@
 
 echo "$HOME/.bashrc"
 
+[[ -r $HOME/.env ]] && echo "$HOME/.bashrc: load $HOME/.env" && source "$HOME/.env"
+
 if [ "$(uname -s)" = "Linux" ]; then
     [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -126,6 +128,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
     }
 fi
 
-if [[ $(uname -s) == Darwin ]] && [[ -r $HOME/.bashrc.d/notify-battery.sh ]] && ! ps | grep -v grep |  grep -q notify-battery.sh; then
-    bash -c "while true; do $HOME/.bashrc.d/notify-battery.sh; sleep 180; done"  2>&1 &
+if [[ $(uname -s) == Darwin ]] && [[ -v NOTIFY_BATTERY_USERNAME ]] && [[ -v NOTIFY_BATTERY_URL ]] && command -v notify-battery > /dev/null && ! ps | grep -v grep |  grep -q notify-battery; then
+    echo "$HOME/.bashrc: invoke notify-battery"
+    notify-battery --slack-bot-name $NOTIFY_BATTERY_USERNAME --slack-notify-url $NOTIFY_BATTERY_URL 2>&1 > /dev/null &
 fi
