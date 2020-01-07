@@ -91,7 +91,6 @@ if [ -x "$HOME/.nvm" ]; then
     fi
 fi
 
-
 if [ -x "$HOME/.yarn/bin" ]; then
     # for nvm
     # PATH="`yarn global bin`:$PATH"
@@ -118,3 +117,8 @@ elif [ -x /opt/sublime_text/sublime_text ]; then
 fi
 TZ=JST-9
 export TZ
+
+if [ -r "$HOME/.profile.local" ]; then
+    launchlog "$HOME/.profile.local: load $HOME/.profile.local"
+    . "$HOME/.profile.local"
+fi

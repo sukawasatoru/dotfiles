@@ -132,3 +132,12 @@ if [[ $(uname -s) == Darwin ]] && [[ -v NOTIFY_BATTERY_USERNAME ]] && [[ -v NOTI
     echo "$HOME/.bashrc: invoke notify-battery"
     notify-battery --slack-bot-name $NOTIFY_BATTERY_USERNAME --slack-notify-url $NOTIFY_BATTERY_URL 2>&1 > /dev/null &
 fi
+
+[[ -f /proc/version ]] && [[ $(cat /proc/version) =~ Microsoft ]] && WSL=1
+
+if [[ "$WSL" ]]; then
+    DISPLAY=127.0.0.1:0.0
+    export DISPLAY
+fi
+
+[[ -r $HOME/.bashrc.local ]] && echo "$HOME/.bashrc: load $HOME/.bashrc.local" && source $HOME/.bashrc.local
