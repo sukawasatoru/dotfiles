@@ -1,11 +1,18 @@
 {
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "block",
+    "editor.fontFamily": "'JetBrains Mono', Menlo, Monaco, Consolas, 'Courier New', monospace",
+    "editor.fontSize": 12,
     "editor.lineNumbers": "off",
     "editor.minimap.enabled": false,
     "editor.renderIndentGuides": false,
     "editor.suggestSelection": "first",
+    "explorer.openEditors.visible": 0,
     "files.autoSave": "onFocusChange",
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
     "workbench.activityBar.visible": false,
-    "workbench.tree.indent": 12
+    "workbench.colorTheme": "fairyfloss",
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "none"
 }
