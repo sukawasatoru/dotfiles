@@ -128,11 +128,6 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
     }
 fi
 
-if [[ $(uname -s) == Darwin ]] && [[ -v NOTIFY_BATTERY_USERNAME ]] && [[ -v NOTIFY_BATTERY_URL ]] && command -v notify-battery > /dev/null && ! ps | grep -v grep |  grep -q notify-battery; then
-    echo "$HOME/.bashrc: invoke notify-battery"
-    notify-battery --slack-bot-name $NOTIFY_BATTERY_USERNAME --slack-notify-url $NOTIFY_BATTERY_URL 2>&1 >> /var/log/notify-battery.log &
-fi
-
 [[ -f /proc/version ]] && [[ $(cat /proc/version) =~ Microsoft ]] && WSL=1
 
 if [[ "$WSL" ]]; then
@@ -141,3 +136,4 @@ if [[ "$WSL" ]]; then
 fi
 
 [[ -r $HOME/.bashrc.local ]] && echo "$HOME/.bashrc: load $HOME/.bashrc.local" && source $HOME/.bashrc.local
+true
