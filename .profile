@@ -51,11 +51,6 @@ if [ -x /usr/libexec/java_home ] && [ -x "$(/usr/libexec/java_home 2> /dev/null)
     export JAVA_HOME
 fi
 
-if [ -z "$JAVA_HOME" ] && [ -x /opt/zulu12.1.3-ca-jdk12-macosx_x64 ]; then
-    JAVA_HOME=/opt/zulu12.1.3-ca-jdk12-macosx_x64
-    export JAVA_HOME
-fi
-
 if [ -x "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
 fi
@@ -72,14 +67,33 @@ if [ -x "$HOME/src/ripgrep/target/release" ]; then
     PATH=$HOME/src/ripgrep/target/release:$PATH
 fi
 
-if [ -n "$(command -v mypathhelper)" ]; then
-    launchlog "$HOME/.profile: invoke mypathhelper"
-    PATH=$(mypathhelper)
+if [ -x "$HOME/.gem" ]; then
+    GEM_HOME=$HOME/.gem
+    export GEM_HOME
+fi
+
+if [ -x "$GEM_HOME/ruby/2.6.0" ]; then
+    PATH=$PATH:$GEM_HOME/ruby/2.6.0/bin
+fi
+
+if [ -x "$GEM_HOME/ruby/2.3.0" ]; then
+    PATH=$PATH:$GEM_HOME/ruby/2.3.0/bin
 fi
 
 if [ "$(command -v python)" ] && [ -x "$(python -m site --user-base)/bin" ]; then
     launchlog "$HOME/.profile: invoke python"
     PATH=$(python -m site --user-base)/bin:$PATH
+fi
+
+if [ -x "$HOME/.yarn/bin" ]; then
+    # for nvm
+    # PATH="`yarn global bin`:$PATH"
+    PATH=$PATH:$HOME/.yarn/bin
+fi
+
+if [ -n "$(command -v mypathhelper)" ]; then
+    launchlog "$HOME/.profile: invoke mypathhelper"
+    PATH=$(mypathhelper)
 fi
 
 if [ -x "$HOME/.nvm" ]; then
@@ -89,12 +103,6 @@ if [ -x "$HOME/.nvm" ]; then
         launchlog "$HOME/.profile: load $NVM_DIR/nvm.sh"
         source "$NVM_DIR/nvm.sh"
     fi
-fi
-
-if [ -x "$HOME/.yarn/bin" ]; then
-    # for nvm
-    # PATH="`yarn global bin`:$PATH"
-    PATH=$PATH:$HOME/.yarn/bin
 fi
 
 LANG=en_US.UTF-8

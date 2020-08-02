@@ -18,14 +18,11 @@ cp -f ~/.ideavimrc $target
 cp -f ~/.inputrc $target
 cp -f ~/.profile $target
 cp -f ~/.tmux.conf $target
-cp -f ~/.vimrc $target
+cp -f ~/.vim/vimrc .vim/
 
 if [ $(uname -s) = "Darwin" ]; then
     cp -f ~/.config/alacritty/alacritty.yml $target/.config/alacritty/alacritty_macos.yml
     cp -f ~/Library/Application\ Support/Code/User/{keybindings.json,settings.json} $target/Library/Application\ Support/Code/User
-    cp -f {~,$target}/Library/Preferences/IntelliJIdea2019.3/idea.vmoptions
-    cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_HOME.plist
-    cp -f {~,$target}/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
-    cp -f {~,$target}/Library/LaunchAgents/setenv.JAVA_HOME.plist
+    cp -f ~/Library/Application\ Support/JetBrains/IntelliJIdea2020.2/idea.vmoptions $target/Library/Application\ Support/JetBrains/IntelliJIdea2020.2
     rsync --delete -crltvhi ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User $target/Library/Application\ Support/Sublime\ Text\ 3/Packages
 fi

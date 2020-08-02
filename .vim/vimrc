@@ -1,0 +1,83 @@
+if has('win32')
+    set encoding=cp932
+else
+    set encoding=utf-8
+endif
+scriptencoding utf-8
+
+unlet! skip_defaults_vim
+source $VIMRUNTIME/defaults.vim
+
+set noswapfile
+set nowrap
+set visualbell
+set expandtab
+set hlsearch
+set fdc=3
+set modeline
+set modelines=5
+set virtualedit=block
+set splitright
+set history=5000
+set laststatus=2
+set mouse=
+
+if has('persistent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif
+
+if &diff
+    colorscheme pablo
+endif
+
+packadd! vim-lsp
+
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log') 
+let g:lsp_diagnostics_echo_cursor = 1
+" set foldmethod=expr
+"   \ foldexpr=lsp#ui#vim#folding#foldexpr()
+"   \ foldtext=lsp#ui#vim#folding#foldtext()
+
+function! s:on_lsp_buffer_enabled() abort
+    setlocal omnifunc=lsp#complete
+    setlocal signcolumn=yes
+    if exists('+tagfunc') | setlocal tagfunc=lsp#tagfunc | endif
+    nmap <buffer> gd <plug>(lsp-definition)
+    nmap <buffer> gr <plug>(lsp-references)
+    nmap <buffer> gi <plug>(lsp-implementation)
+    nmap <buffer> gt <plug>(lsp-type-definition)
+    nmap <buffer> <leader>rn <plug>(lsp-rename)
+    nmap <buffer> [g <Plug>(lsp-previous-diagnostic)
+    nmap <buffer> ]g <Plug>(lsp-next-diagnostic)
+    nmap <buffer> K <plug>(lsp-hover)
+endfunction
+
+augroup lsp_install
+    autocmd!
+    autocmd User lsp_buffer_enabled call s:on_lsp_buffer_enabled()
+augroup END
+
+packadd! vim-lsp-settings
+let g:lsp_settings_filetype_rust = ['rust-analyzer', 'rls']
+
+packadd! asyncomplete.vim
+packadd! asyncomplete-lsp.vim
+packadd! asyncomplete-file.vim
+
+autocmd User asyncomplete_setup call asyncomplete#register_source(asyncomplete#sources#file#get_source_options({
+    \ 'name': 'file',
+    \ 'whitelist': ['*'],
+    \ 'priority': 10,
+    \ 'completor': function('asyncomplete#sources#file#completor')
+    \ }))
+
+let g:solarized_termcolors=256
+let g:solarized_termtrans=1
+set background=dark
+set t_Co=256
+colorscheme solarized
+cmap w!! w !sudo tee > /dev/null %
+
+command LD LspDefinition

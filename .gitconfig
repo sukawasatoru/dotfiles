@@ -14,7 +14,7 @@
 	interHunkContext = 20
 [alias]
 	difff = diff --find-renames=3 --find-copies=3
-	logg = log --graph --pretty=fuller --show-signature --find-renames=3 --find-copies=3 --function-context
+	logg = log --graph --pretty=fuller --show-signature --find-renames=3 --find-copies=3
 	showw = show --pretty=fuller --show-signature --function-context
 	co = checkout
 	grepp = grep --function-context
@@ -29,4 +29,6 @@
 	process = git-lfs filter-process
 [hub]
 	protocol = https
+[pull]
+	ff = only
 # vim: noexpandtab
