@@ -28,7 +28,7 @@ if [ $(uname -s) = "Darwin" ]; then
     rsync --delete -crltvhi ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User $target/Library/Application\ Support/Sublime\ Text\ 3/Packages
 fi
 
-cp -f ~/bin/apktool $target
-cp -f ~/bin/bfg $target
-cp -f ~/bin/dex2jar $target
-cp -f ~/bin/sdedit $target
+cp -f ~/bin/apktool $target/bin
+cp -f ~/bin/bfg $target/bin
+cp -f ~/bin/dex2jar $target/bin
+cp -f ~/bin/sdedit $target/bin
