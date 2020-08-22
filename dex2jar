@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+
+if [[ -x /usr/local/share/dex2jar/d2j-dex2jar.sh ]]; then
+    /usr/local/share/dex2jar/d2j-dex2jar.sh $@
+else
+    echo dex2jar not found
+    exit 1
+fi

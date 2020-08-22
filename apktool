@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+
+if [[ -r /usr/local/share/apktool/apktool.jar ]]; then
+    exec java -jar /usr/local/share/apktool/apktool.jar $@
+fi
+
+echo apktool not found
+exit 1

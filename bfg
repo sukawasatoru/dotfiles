@@ -1,0 +1,8 @@
+#!/bin/bash -eu
+
+if [[ -r /usr/local/share/bfg/bfg.jar ]]; then
+    exec java -jar /usr/local/share/bfg/bfg.jar $@
+fi
+
+echo bfg not found
+exit 1

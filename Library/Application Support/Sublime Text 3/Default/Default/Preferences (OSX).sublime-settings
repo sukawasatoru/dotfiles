@@ -1,0 +1,10 @@
+{
+        "font_face": "JetBrains Mono",
+	"font_size": 12,
+	"ignored_packages":
+	[
+		"IMESupport",
+	],
+	"line_padding_top": 1,
+	"line_padding_bottom": 1,
+}

@@ -2,13 +2,13 @@
 	"auto_complete": false,
 	"color_scheme": "Packages/User/fairyfloss.tmTheme",
 	"ensure_newline_at_eof_on_save": true,
-	"font_face": "Inconsolata",
 	"ignored_packages":
 	[
 		"IMESupport",
 		"Vintage"
 	],
+	"line_numbers": false,
 	"show_encoding": true,
 	"show_line_endings": true,
-	"theme": "Default.sublime-theme"
+	"theme": "Default.sublime-theme",
 }

@@ -1,0 +1,8 @@
+#!/usr/bin/env -S bash -eu
+
+if [[ -r /usr/local/share/sdedit/sdedit.jar ]]; then
+    exec java -jar /usr/local/share/sdedit/sdedit.jar $@
+fi
+
+echo sdedit not found
+exit 1
