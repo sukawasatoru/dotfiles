@@ -16,17 +16,7 @@ if [ -x /usr/libexec/path_helper ]; then
     eval "$(/usr/libexec/path_helper)"
 fi
 
-if [ -x /opt/local/sbin ]; then
-    PATH=/opt/local/sbin:$PATH
-fi
-
-if [ -x /opt/local/bin ]; then
-    PATH=/opt/local/bin:$PATH
-fi
-
 # adding an appropriate PATH variable for use with Android.
-# ~/Library/LaunchAgents/setenv.ANDROID_SDK_ROOT.plist
-# ~/Library/LaunchAgents/setenv.ANDROID_HOME.plist
 if [ -x /opt/android-sdk-macosx ]; then
     ANDROID_SDK_ROOT=/opt/android-sdk-macosx
     export ANDROID_SDK_ROOT
@@ -34,6 +24,14 @@ if [ -x /opt/android-sdk-macosx ]; then
     export ANDROID_HOME
     PATH=/opt/android-sdk-macosx/tools/bin:$PATH
     PATH=/opt/android-sdk-macosx/platform-tools:$PATH
+fi
+
+if [ -x /opt/local/sbin ]; then
+    PATH=/opt/local/sbin:$PATH
+fi
+
+if [ -x /opt/local/bin ]; then
+    PATH=/opt/local/bin:$PATH
 fi
 
 if [ -x "$HOME/bin" ]; then
