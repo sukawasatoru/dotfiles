@@ -16,15 +16,17 @@ if [ -x /usr/libexec/path_helper ]; then
     eval "$(/usr/libexec/path_helper)"
 fi
 
-# adding an appropriate PATH variable for use with Android.
-if [ -x /opt/android-sdk-macosx ]; then
-    ANDROID_SDK_ROOT=/opt/android-sdk-macosx
-    export ANDROID_SDK_ROOT
-    ANDROID_HOME=$ANDROID_SDK_ROOT
-    export ANDROID_HOME
-    PATH=/opt/android-sdk-macosx/tools/bin:$PATH
-    PATH=/opt/android-sdk-macosx/platform-tools:$PATH
-fi
+for OS in macosx linux; do
+    if [ -x /opt/android-sdk-$OS ]; then
+        ANDROID_SDK_ROOT=/opt/android-sdk-$OS
+        export ANDROID_SDK_ROOT
+        ANDROID_HOME=$ANDROID_SDK_ROOT
+        export ANDROID_HOME
+        PATH=/opt/android-sdk-$OS/cmdline-tools/latest/bin:$PATH
+        PATH=/opt/android-sdk-$OS/platform-tools:$PATH
+        break
+    fi
+done
 
 if [ -x /opt/local/sbin ]; then
     PATH=/opt/local/sbin:$PATH
@@ -42,7 +44,6 @@ if [ -x "$HOME/.local/bin" ]; then
     PATH=$HOME/.local/bin:$PATH
 fi
 
-# ~/Library/LaunchAgents/setenv.JAVA_HOME.plist
 if [ -x /usr/libexec/java_home ] && [ -x "$(/usr/libexec/java_home 2> /dev/null)" ]; then
     launchlog "$HOME/.profile: invoke /usr/libexec/java_home"
     JAVA_HOME=$(/usr/libexec/java_home)
@@ -51,6 +52,12 @@ fi
 
 if [ -x "$HOME/.cargo/bin" ]; then
     PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+hash -r
+if [ -n "$(command -v sccache)" ]; then
+   RUSTC_WRAPPER=sccache
+   export RUSTC_WRAPPER
 fi
 
 if [ -x "$HOME/Applications/terminal-notifier.app" ]; then
@@ -101,6 +108,11 @@ if [ -x "$HOME/.nvm" ]; then
         launchlog "$HOME/.profile: load $NVM_DIR/nvm.sh"
         source "$NVM_DIR/nvm.sh"
     fi
+fi
+
+if [ -n "$(command -v docker)" ]; then
+    DOCKER_BUILDKIT=1
+    export DOCKER_BUILDKIT
 fi
 
 LANG=en_US.UTF-8

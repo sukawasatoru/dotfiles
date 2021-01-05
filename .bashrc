@@ -65,7 +65,10 @@ fi
 
 PROMPT_COMMAND="PS1='\$(RET=\$?; [ \$RET -eq 0 ] && echo -n \"\[\e[0;32m\]\" || echo -n \"\[\e[0;31m\]\"; printf %3s \$RET)\$\[\e[m\] '; history -a; history -c; history -r"
 
-if [ -s /usr/share/autojump/autojump.sh ]; then
+if [[ -s $HOME/.autojump/etc/profile.d/autojump.sh ]]; then
+    echo "$HOME/.bashrc: load $HOME/.autojump/etc/profile.d/autojump.sh"
+    source $HOME/.autojump/etc/profile.d/autojump.sh
+elif [ -s /usr/share/autojump/autojump.sh ]; then
     echo "$HOME/.bashrc: load /usr/share/autojump/autojump.sh"
     source /usr/share/autojump/autojump.sh
 elif [ -s /opt/local/etc/profile.d/autojump.sh ]; then

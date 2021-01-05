@@ -1,0 +1,1 @@
+[[ -r $HOME/src/docker_cli/contrib/completion/bash/docker ]] && source $HOME/src/docker_cli/contrib/completion/bash/docker
