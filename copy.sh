@@ -23,6 +23,7 @@ cp -f ~/.vim/vimrc .vim/
 if [ $(uname -s) = "Darwin" ]; then
     cp -f ~/.config/alacritty/alacritty.yml $target/.config/alacritty/alacritty_macos.yml
     cp -f ~/Library/Application\ Support/Code/User/{keybindings.json,settings.json} $target/Library/Application\ Support/Code/User
+    cp -f ~/Library/Application\ Support/JetBrains/CLion2020.3/idea.properties $target/Library/Application\ Support/JetBrains/CLion2020.3
     cp -f ~/Library/Application\ Support/JetBrains/IntelliJIdea2020.2/idea.vmoptions $target/Library/Application\ Support/JetBrains/IntelliJIdea2020.2
     rsync --delete -crltvhi ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/Default $target/Library/Application\ Support/Sublime\ Text\ 3/Default
     rsync --delete -crltvhi ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User $target/Library/Application\ Support/Sublime\ Text\ 3/Packages
@@ -31,4 +32,5 @@ fi
 cp -f ~/bin/apktool $target/bin
 cp -f ~/bin/bfg $target/bin
 cp -f ~/bin/dex2jar $target/bin
+cp -f ~/bin/nproc $target/bin
 cp -f ~/bin/sdedit $target/bin

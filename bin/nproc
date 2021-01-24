@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+getconf _NPROCESSORS_ONLN
+# sysctl -n hw.logicalcpu

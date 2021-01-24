@@ -116,7 +116,7 @@ if [ -f ~/src/bash-preexec/bash-preexec.sh ]; then
             if [[ ! -v SSH_TTY ]]; then
                 case $(uname -s) in
                     "Darwin")
-                        terminal-notifier -message "Finished: $_tn_cmd"
+                        terminal-notifier -title 'Command finished' -sound default -message "Elapsed time: $dur seconds, Command: $_tn_cmd" -activate 'com.apple.Terminal'
                         ;;
                     "Linux")
                         alias -p | grep -q "alias alert=" && alert "Finished: $_tn_cmd"
