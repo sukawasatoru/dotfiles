@@ -2,3 +2,4 @@
 /.env.local
 /tags
 .DS_Store
+*.sublime-workspace
