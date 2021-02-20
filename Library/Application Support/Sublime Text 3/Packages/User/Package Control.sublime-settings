@@ -10,12 +10,11 @@
 		"ConvertToUTF8",
 		"EditorConfig",
 		"IMESupport",
-		"OmniMarkupPreviewer",
+		"MarkdownPreview",
 		"Package Control",
 		"SublimeLinter-shellcheck",
 		"Tabnine",
 		"TypeScript",
-		"Vue Syntax Highlight",
-		"Vuetify"
+		"Vue Syntax Highlight"
 	]
 }
