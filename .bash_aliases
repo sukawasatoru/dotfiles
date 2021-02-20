@@ -4,7 +4,7 @@ alias_mac()
 {
     # alias terminal-notifier='reattach-to-user-namespace terminal-notifier'
     alias grep='grep --color=auto'
-    alias mosh="LC_CTYPE= mosh"
+    alias mosh="LC_CTYPE= mosh --server=/opt/local/bin/mosh-server"
     [[ "$(which rmtrash)" ]] && alias rm=rmtrash
     [[ 10 -le $(sw_vers -productVersion | cut -d. -f1) ]] && [[ 12 -le $(sw_vers -productVersion | cut -d. -f2) ]] && alias cp="cp -c"
 }
