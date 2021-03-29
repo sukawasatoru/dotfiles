@@ -28,6 +28,10 @@ for OS in macosx linux; do
     fi
 done
 
+if [ -x /usr/local/go ]; then
+    PATH=/usr/local/go/bin:$PATH
+fi
+
 if [ -x /opt/local/sbin ]; then
     PATH=/opt/local/sbin:$PATH
 fi
@@ -85,9 +89,9 @@ if [ -x "$GEM_HOME/ruby/2.3.0" ]; then
     PATH=$PATH:$GEM_HOME/ruby/2.3.0/bin
 fi
 
-if [ "$(command -v python)" ] && [ -x "$(python -m site --user-base)/bin" ]; then
+if [ "$(command -v python3)" ] && [ -x "$(python3 -m site --user-base)/bin" ]; then
     launchlog "$HOME/.profile: invoke python"
-    PATH=$(python -m site --user-base)/bin:$PATH
+    PATH=$(python3 -m site --user-base)/bin:$PATH
 fi
 
 if [ -x "$HOME/.yarn/bin" ]; then
