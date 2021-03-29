@@ -28,10 +28,6 @@ for OS in macosx linux; do
     fi
 done
 
-if [ -x /usr/local/go ]; then
-    PATH=/usr/local/go/bin:$PATH
-fi
-
 if [ -x /opt/local/sbin ]; then
     PATH=/opt/local/sbin:$PATH
 fi
@@ -110,7 +106,7 @@ if [ -x "$HOME/.nvm" ]; then
     export NVM_DIR
     if [ "$(uname -s)" = "Darwin" ]; then
         launchlog "$HOME/.profile: load $NVM_DIR/nvm.sh"
-        source "$NVM_DIR/nvm.sh"
+        . "$NVM_DIR/nvm.sh"
     fi
 fi
 

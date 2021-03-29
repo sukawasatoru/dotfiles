@@ -54,6 +54,8 @@ stty werase undef
 [[ -r ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source "$HOME/.bash_aliases"
 [[ -r ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source "$HOME/lib/azure-cli/az.completion"
 [[ -r $NVM_DIR/nvm.sh ]] && echo "$HOME/.bashrc: load $NVM_DIR/nvm.sh" && source "$NVM_DIR/nvm.sh" --no-use
+[[ -r $HOME/.gvm/scripts/gvm ]] && echo "$HOME/.bashrc: load $HOME/.gvm/scripts/gvm" && source "$HOME/.gvm/scripts/gvm"
+
 
 if [ -r /opt/local/share/bash-completion/bash_completion ]; then
     echo "$HOME/.bashrc: load /opt/local/share/bash-completion/bash_completion"
