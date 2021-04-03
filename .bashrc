@@ -78,6 +78,11 @@ elif [ -s /opt/local/etc/profile.d/autojump.sh ]; then
     source /opt/local/etc/profile.d/autojump.sh
 fi
 
+if [[ "$(command -v direnv)" ]]; then
+    echo "$HOME/.bashrc: invoke direnv"
+    eval "$(direnv hook bash)"
+fi
+
 # https://gist.github.com/umeyuki/0267d8e995e32012cfe8
 peco_history() {
     declare l=$(HISTTIMEFORMAT= history | LC_ALL=C sort -r | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --query "$READLINE_LINE")
