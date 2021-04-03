@@ -83,6 +83,11 @@ if [[ "$(command -v direnv)" ]]; then
     eval "$(direnv hook bash)"
 fi
 
+if [[ "$(command -v rbenv)" ]]; then
+    echo "$HOME/.bashrc: invoke rbenv"
+    eval "$(rbenv init -)"
+fi
+
 # https://gist.github.com/umeyuki/0267d8e995e32012cfe8
 peco_history() {
     declare l=$(HISTTIMEFORMAT= history | LC_ALL=C sort -r | awk '{for(i=2;i<NF;i++){printf("%s%s",$i,OFS=" ")}print $NF}' | peco --query "$READLINE_LINE")
