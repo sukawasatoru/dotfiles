@@ -51,6 +51,8 @@ IGNOREEOF=10
 # for "C-w" on .inputrc
 stty werase undef
 
+[[ $TERM = tmux-256color ]] && export TERM=xterm-256color
+
 [[ -r ~/.bash_aliases ]] && echo "$HOME/.bashrc: load $HOME/.bash_aliases" && source "$HOME/.bash_aliases"
 [[ -r ~/lib/azure-cli/az.completion ]] && echo "$HOME/.bashrc: load $HOME/lib/azure-cli/az.completion" && source "$HOME/lib/azure-cli/az.completion"
 [[ -r $NVM_DIR/nvm.sh ]] && echo "$HOME/.bashrc: load $NVM_DIR/nvm.sh" && source "$NVM_DIR/nvm.sh" --no-use

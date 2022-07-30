@@ -5,9 +5,10 @@
 	"ignored_packages":
 	[
 		"IMESupport",
-		"Vintage"
+		"Tabnine",
+		"Vintage",
 	],
+	"line_numbers": false,
 	"show_encoding": true,
 	"show_line_endings": true,
-	"theme": "Default.sublime-theme"
 }

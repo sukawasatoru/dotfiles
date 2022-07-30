@@ -2,7 +2,7 @@
 	"bootstrapped": true,
 	"in_process_packages":
 	[
-		"IMESupport"
+		"IMESupport",
 	],
 	"installed_packages":
 	[
@@ -15,6 +15,7 @@
 		"SublimeLinter-shellcheck",
 		"Tabnine",
 		"TypeScript",
-		"Vue Syntax Highlight"
-	]
+		"Vue Syntax Highlight",
+		"WakaTime",
+	],
 }

@@ -29,3 +29,6 @@ if [ "$(command -v trimhistory)" ] && [ -x "$HOME/src/terminal-history" ]; then
 fi
 
 unset bash_interactive
+
+# Added by Toolbox App
+export PATH="$PATH:/Users/vieena/Library/Application Support/JetBrains/Toolbox/scripts"

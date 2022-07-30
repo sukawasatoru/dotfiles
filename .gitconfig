@@ -13,8 +13,8 @@
 	compactionheuristic = true
 	interHunkContext = 20
 [alias]
-	difff = diff --find-renames=3 --find-copies=3
-	logg = log --graph --pretty=fuller --show-signature --find-renames=3 --find-copies=3
+	difff = diff --ext-diff --find-renames=3 --find-copies=3
+	logg = log --ext-diff --graph --pretty=fuller --show-signature --find-renames=3 --find-copies=3
 	showw = show --pretty=fuller --show-signature --function-context
 	co = checkout
 	grepp = grep --function-context
