@@ -1,2 +1,3 @@
 source ~/.ideavimrc.local
 source ~/.vimrc
+set ideajoin

@@ -36,6 +36,10 @@ if [ -x /opt/local/bin ]; then
     PATH=/opt/local/bin:$PATH
 fi
 
+if [ -x "$HOME/.deno/bin" ]; then
+    PATH=$HOME/.deno/bin:$PATH
+fi
+
 if [ -x "$HOME/bin" ]; then
     PATH=$HOME/bin:$PATH
 fi
@@ -56,8 +60,16 @@ fi
 
 hash -r
 if [ -n "$(command -v sccache)" ]; then
+   # https://github.com/mozilla/sccache/blob/main/docs/Configuration.md
    RUSTC_WRAPPER=sccache
    export RUSTC_WRAPPER
+
+   # 60*60*24=1day
+   SCCACHE_IDLE_TIMEOUT=86400
+   export SCCACHE_IDLE_TIMEOUT
+
+   SCCACHE_CACHE_SIZE="50G"
+   export SCCACHE_CACHE_SIZE
 fi
 
 if [ -x "$HOME/Applications/terminal-notifier.app" ]; then
